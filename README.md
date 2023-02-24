@@ -20,6 +20,8 @@ This bicep deployment will create and configure the following resources:
 2. **Deploy** the main.bicep file (bicep/deploy/main.bicep)  
   - **Using VS Code:**  
   add the bicep extension and then right click the bicep file inside VS Code and choose **Deploy Bicep File**.  
+  ![deploy using vs code](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/media/quickstart-create-bicep-use-visual-studio-code/vscode-bicep-deploy.png)  
+  VS Code will then authenticate you with Azure (if needed) and show a prompt for each parameter.
   
   - **Using Azure CLI:**  
   `az deployment sub create --template-file main.bicep`  
