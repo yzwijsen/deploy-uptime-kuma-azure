@@ -8,7 +8,7 @@ This bicep deployment will create and configure the following resources:
 - App Service
 - Storage Account with file share
 
-> The fileshare will be mounted as a **persistent volume** on the app service (on the /app/data path used by uptime kuma).  
+> The fileshare will be setup as a **persistent volume** on the app service (mounted at /app/data in the docker container, which is where uptime kuma stores all it's files).  
 
 > **Continuous Integration** is turned on so whenever you restart the app service the latest uptime kuma build will be fetched automatically.
 
