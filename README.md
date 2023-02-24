@@ -1,2 +1,27 @@
 # deploy-uptime-kuma-azure
-Deploy Uptime Kuma to Azure app service using bicep
+bicep script to deploy Uptime Kuma on Azure app service with persistent storage
+
+## About
+
+This bicep deployment will create and configure the following resources:
+- App Service Plan
+- App Service
+- Storage Account with file share
+
+> The fileshare will be mounted as a **persistent volume** on the app service (on the /app/data path used by uptime kuma).  
+
+> **Continuous Integration** is turned on so whenever you restart the app service the latest uptime kuma build will be fetched automatically.
+
+## How to deploy
+
+1. **Clone** repo  
+  *(or download manually but make sure you have all the bicep modules and keep the same folder structure)*
+  
+2. **Deploy** the main.bicep file (bicep/deploy/main.bicep)  
+  - **Using VS Code:**  
+  add the bicep extension and then right click the bicep file inside VS Code and choose **Deploy Bicep File**.  
+  
+  - **Using Azure CLI:**  
+  `az deployment sub create --template-file main.bicep`  
+  
+3. A few minutes after the deployment finishes you should be able to access your uptime kuma instance at https://***{webAppName}***.azurewebsites.net
