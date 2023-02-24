@@ -23,7 +23,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
 // create storage account
 module stg '../modules/storageAccount.bicep' = {
   scope: rg
-  name: 'Storage Account'
+  name: storageName
   params: {
     storageName: storageName
     location: location
@@ -33,7 +33,7 @@ module stg '../modules/storageAccount.bicep' = {
 // create file share to use as persistent storage for docker container
 module fs '../modules/fileShare.bicep' = {
   scope: rg
-  name: 'Fileshare'
+  name: fileShareName
   params: {
     fileShareName: fileShareName
     storageName: stg.outputs.storageName
@@ -43,7 +43,7 @@ module fs '../modules/fileShare.bicep' = {
 // create app service plan
 module asp '../modules/appServicePlan.bicep' = {
   scope: rg
-  name: 'App Service Plan'
+  name: appServicePlanName
   params: {
     appServicePlanName: appServicePlanName
     location: location
@@ -53,7 +53,7 @@ module asp '../modules/appServicePlan.bicep' = {
 // create app service
 module wapp '../modules/appServiceDockerPublic.bicep' = {
   scope: rg
-  name: 'Web App'
+  name: webAppName
   params: {
     webAppName: webAppName
     appServicePlanId: asp.outputs.appServicePlanId
@@ -66,7 +66,7 @@ module wapp '../modules/appServiceDockerPublic.bicep' = {
 // mount fileshare as persistent storage
 module mnt '../modules/appServiceStorageMount.bicep' = {
   scope: rg
-  name: 'Mount Fileshare'
+  name: 'Mount-Fileshare'
   params: {
     mountPath: fsMountPath
     shareName: fs.outputs.fileShareName
