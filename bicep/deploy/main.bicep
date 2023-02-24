@@ -9,6 +9,11 @@ param webAppName string = 'wapp-${uniqueString(subscription().id)}'
 param fileShareName string = 'fs-uptime-kuma'
 param storageName string = 'stuk${uniqueString(subscription().id)}'
 
+// Variables
+var dockerRegistryHost = 'docker.io'
+var linuxFxVersion = 'DOCKER|louislam/uptime-kuma:latest'
+var fsMountPath = '/app/data'
+
 // create resource group
 resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: resourceGroupName
@@ -52,8 +57,8 @@ module wapp '../modules/appServiceDockerPublic.bicep' = {
   params: {
     webAppName: webAppName
     appServicePlanId: asp.outputs.appServicePlanId
-    dockerRegistryHost: 'docker.io'
-    linuxFxVersion: 'DOCKER|louislam/uptime-kuma:latest'
+    dockerRegistryHost: dockerRegistryHost
+    linuxFxVersion: linuxFxVersion
     location: location
   }
 }
@@ -63,7 +68,7 @@ module mnt '../modules/appServiceStorageMount.bicep' = {
   scope: rg
   name: 'storageMount'
   params: {
-    mountPath: '/app/data'
+    mountPath: fsMountPath
     shareName: fs.outputs.fileShareName
     storageName: stg.outputs.storageName
     webAppName: wapp.outputs.webAppName
