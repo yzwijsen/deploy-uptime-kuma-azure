@@ -66,7 +66,7 @@ module wapp '../modules/appServiceDockerPublic.bicep' = {
 // mount fileshare as persistent storage
 module mnt '../modules/appServiceStorageMount.bicep' = {
   scope: rg
-  name: 'Mount-Fileshare'
+  name: 'mount-fileshare'
   params: {
     mountPath: fsMountPath
     shareName: fs.outputs.fileShareName
