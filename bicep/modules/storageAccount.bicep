@@ -32,4 +32,4 @@ resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
 
 // Outputs
 output storageEndpoint object = stg.properties.primaryEndpoints
-output storageName string = stg.name
+output storageName string = storageName
