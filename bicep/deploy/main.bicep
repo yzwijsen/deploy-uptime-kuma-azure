@@ -5,6 +5,8 @@ targetScope = 'subscription'
 param location string = 'westeurope'
 param resourceGroupName string = 'rg-uptime-kuma'
 param appServicePlanName string = 'asp-uptime-kuma'
+param appServicePlanSku string = 'B1'
+param appServicePlanTier string = 'Basic'
 param webAppName string = 'wapp-${uniqueString(subscription().id)}'
 param fileShareName string = 'fs-uptime-kuma'
 param storageName string = 'stuk${uniqueString(subscription().id)}'
@@ -46,6 +48,8 @@ module asp '../modules/appServicePlan.bicep' = {
   name: appServicePlanName
   params: {
     appServicePlanName: appServicePlanName
+    sku: appServicePlanSku
+    tier: appServicePlanTier
     location: location
   }
 }
