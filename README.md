@@ -1,5 +1,5 @@
-# deploy-uptime-kuma-azure
-bicep script to deploy Uptime Kuma on Azure app service with persistent storage
+# :rocket: Deploy Uptime Kuma on Azure App Service
+Bicep script to automatically deploy [Uptime Kuma](https://github.com/louislam/uptime-kuma) on Azure app service with persistent storage
 
 ## About
 
