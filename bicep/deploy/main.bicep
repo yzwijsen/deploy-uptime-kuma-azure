@@ -36,10 +36,9 @@ module stg '../modules/storageAccount.bicep' = {
 module fs '../modules/fileShare.bicep' = {
   scope: rg
   name: fileShareName
-  dependsOn: [stg]
   params: {
     fileShareName: fileShareName
-    storageName: storageName
+    storageName: stg.outputs.storageName
   }
 }
 
@@ -72,11 +71,10 @@ module wapp '../modules/appServiceDockerPublic.bicep' = {
 module mnt '../modules/appServiceStorageMount.bicep' = {
   scope: rg
   name: 'mount-fileshare'
-  dependsOn: [stg, fs, wapp]
   params: {
     mountPath: fsMountPath
-    shareName: fileShareName
-    storageName: storageName
-    webAppName: webAppName
+    shareName: fs.outputs.fileShareName
+    storageName: stg.outputs.storageName
+    webAppName: wapp.outputs.webAppName
   }
 }
