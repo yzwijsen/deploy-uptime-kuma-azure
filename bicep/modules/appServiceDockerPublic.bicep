@@ -1,3 +1,6 @@
+// Scope
+targetScope = 'resourceGroup'
+
 // Parameters
 param webAppName string = 'wapp-${uniqueString(resourceGroup().id)}'
 param location string = resourceGroup().location

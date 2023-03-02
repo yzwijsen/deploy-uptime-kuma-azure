@@ -1,3 +1,6 @@
+// Scope
+targetScope = 'resourceGroup'
+
 // Parameters
 param webAppName string
 param storageName string

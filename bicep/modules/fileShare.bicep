@@ -1,3 +1,6 @@
+// Scope
+targetScope = 'resourceGroup'
+
 @minLength(3)
 @maxLength(20)
 param fileShareName string = 'fs-default'

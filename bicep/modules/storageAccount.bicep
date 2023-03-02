@@ -1,3 +1,6 @@
+// Scope
+targetScope = 'resourceGroup'
+
 // Parameters
 @minLength(3)
 @maxLength(24)

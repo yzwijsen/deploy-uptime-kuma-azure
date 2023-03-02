@@ -1,3 +1,6 @@
+// Scope
+targetScope = 'resourceGroup'
+
 // Parameters
 param appServicePlanName string = 'asp-${uniqueString(resourceGroup().id)}'
 param location string = resourceGroup().location
