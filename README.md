@@ -8,6 +8,8 @@ This bicep deployment will create and configure the following resources:
 - App Service
 - Storage Account with file share
 
+see the full diagram [below.](https://github.com/yzwijsen/deploy-uptime-kuma-azure/blob/main/README.md#azure-resource-diagram)
+
 > Note: The fileshare will be setup as a **persistent volume** on the app service (mounted at /app/data in the docker container, which is where uptime kuma stores all it's files).  
 
 > Note: **Continuous Integration** is turned on so whenever you restart the app service the latest uptime kuma build will be fetched automatically.
