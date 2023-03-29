@@ -40,3 +40,7 @@ This bicep deployment will create and configure the following resources:
 | webAppName | wapp-${uniqueString(subscription().id)} | Name of the web app. This will also become the hostname of your web app so it needs to be globally unique |
 | fileShareName | fs-uptime-kuma | Name of the file share |
 | storageName | stuk${uniqueString(subscription().id)} | Name of the storage account (needs to be globally unique) |
+
+## Azure Resource Diagram
+
+![2023-02-28 14_30_09-Visualize main bicep - deploy-uptime-kuma-azure - Visual Studio Code](https://user-images.githubusercontent.com/1075201/228477660-2cae6e48-c7bc-4159-9466-16f3fa6a2848.png)
