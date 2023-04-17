@@ -4,6 +4,7 @@ Bicep script to automatically deploy [Uptime Kuma](https://github.com/louislam/u
 ## About
 
 This bicep deployment will create and configure the following resources:
+- Resource Group
 - App Service Plan
 - App Service
 - Storage Account with file share
