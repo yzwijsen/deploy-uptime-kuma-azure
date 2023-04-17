@@ -20,14 +20,41 @@ see the full diagram [below.](https://github.com/yzwijsen/deploy-uptime-kuma-azu
   *(or download manually but make sure you have all the bicep modules and keep the same folder structure)*
   
 2. **Deploy** the main.bicep file (bicep/deploy/main.bicep)  
-  - **Using VS Code:**  
-  add the bicep extension and then right click the bicep file inside VS Code and choose **Deploy Bicep File**.  
-  ![deploy using vs code](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/media/quickstart-create-bicep-use-visual-studio-code/vscode-bicep-deploy.png)  
-  VS Code will then authenticate you with Azure (if needed) and show a prompt for each parameter.
-  
-  - **Using Azure CLI:**  
-  `az deployment sub create --template-file main.bicep`  
-  
+   - **Using VS Code:**  
+   add the bicep extension and then right click the bicep file inside VS Code and choose **Deploy Bicep File**.  
+   ![deploy using vs code](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/media/quickstart-create-bicep-use-visual-studio-code/vscode-bicep-deploy.png)  
+   VS Code will then authenticate you with Azure (if needed) and show a prompt for each parameter.
+
+   - **Using Azure CLI:**  
+     
+     bash:
+     ```bash
+     az deployment sub create --template-file main.bicep --parameters \
+      location="westeurope" \
+      resourceGroupName="rg-uptime-kuma" \
+      appServicePlanName="asp-uptime-kuma" \
+      appServicePlanSku="B1" \
+      appServicePlanTier="Basic" \
+      webAppName="wapp-uptime-kuma-$(openssl rand -hex 4)" \
+      fileShareName="fs-uptime-kuma" \
+      storageName="stuk$(openssl rand -hex 5)"
+     ```
+     
+     powershell:
+     ```powershell
+     $RandomSuffix = -join ((65..90) + (97..122) | Get-Random -Count 5 | ForEach-Object { [char]$_ })
+     
+     az deployment sub create --template-file main.bicep --parameters `
+      location="westeurope" `
+      resourceGroupName="rg-uptime-kuma" `
+      appServicePlanName="asp-uptime-kuma" `
+      appServicePlanSku="B1" `
+      appServicePlanTier="Basic" `
+      webAppName="wapp-uptime-kuma-$RandomSuffix" `
+      fileShareName="fs-uptime-kuma" `
+      storageName="stuk$RandomSuffix"
+     ```
+
 3. A few minutes after the deployment finishes you should be able to access your uptime kuma instance at https://***{webAppName}***.azurewebsites.net
 
 ## Parameters
